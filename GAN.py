@@ -130,10 +130,10 @@ class GAN(object):
     for epoch in range(self.epoch):
       self.G.train()
       epoch_start_time = time.time()
-      train_hist['D_loss'].append([])
-      train_hist['D_acc'].append([])
-      train_hist['G_loss'].append([])
-      train_hist['G_acc'].append([])
+      self.train_hist['D_loss'].append([])
+      self.train_hist['D_acc'].append([])
+      self.train_hist['G_loss'].append([])
+      self.train_hist['G_acc'].append([])
       for iter, (x_, _) in enumerate(self.data_loader):
         if iter == self.data_loader.dataset.__len__() // self.batch_size:
           break
