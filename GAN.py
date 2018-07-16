@@ -154,7 +154,7 @@ class GAN(object):
 
         D_loss = D_real_loss + D_fake_loss
         self.train_hist['D_loss'][-1].append(D_loss.item())
-        d_acc = (torch.mean(D_real >= 0.5) + torch.mean(D_fake < 0.5))/2
+        d_acc = (torch.mean((D_real >= 0.5).float()) + torch.mean((D_fake < 0.5).float()))/2
         self.train_hist['D_acc'][-1].append(d_acc.item())
 
         D_loss.backward()
@@ -167,7 +167,7 @@ class GAN(object):
         D_fake = self.D(G_)
         G_loss = self.BCE_loss(D_fake, self.y_real_)
         self.train_hist['G_loss'][-1].append(G_loss.item())
-        self.train_hist['G_acc'][-1].append(torch.mean(D_fake>0.5).item())
+        self.train_hist['G_acc'][-1].append(torch.mean((D_fake>0.5).float()).item())
 
         G_loss.backward()
         self.G_optimizer.step()
