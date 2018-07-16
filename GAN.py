@@ -179,8 +179,8 @@ class GAN(object):
 
       self.train_hist['per_epoch_time'].append(time.time() - epoch_start_time)
       print('epoch %d: D_loss %.4f, D_acc %.4f, G_loss %.4f, G_acc %.4f'%(
-        epoch, np.mean(train_hist['D_loss'][-1]), np.mean(train_hist['D_acc'][-1]), 
-        np.mean(train_hist['G_loss'][-1]), np.mean(train_hist['G_acc'][-1])))
+        epoch, np.mean(self.train_hist['D_loss'][-1]), np.mean(self.train_hist['D_acc'][-1]), 
+        np.mean(self.train_hist['G_loss'][-1]), np.mean(self.train_hist['G_acc'][-1])))
       with torch.no_grad():
         self.visualize_results((epoch+1))
 
